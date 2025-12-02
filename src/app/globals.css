@@ -6,21 +6,60 @@
 }
 
 @theme inline {
+  /* Background & Foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
+
+  /* Brand Colors - Maxxar */
+  --color-maxxar-blue: #2563EB;
+  --color-maxxar-dark: #0B1120;
+  --color-maxxar-light: #F8FAFC;
+
+  /* Accent Colors */
+  --color-accent-teal: #0D9488;
+  --color-accent-purple: #7C3AED;
+
+  /* Surface Colors */
+  --color-surface-white: #FFFFFF;
+  --color-surface-grey: #F1F5F9;
+
+  /* Text Colors */
+  --color-text-primary: #1E293B;
+  --color-text-secondary: #64748B;
+
+  /* Semantic Colors */
+  --color-clinical-white: #F8FAFC;
+  --color-ink-charcoal: #1E293B;
+
+  /* Status Colors */
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
