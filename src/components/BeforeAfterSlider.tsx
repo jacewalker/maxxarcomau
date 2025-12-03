@@ -56,12 +56,14 @@ export default function BeforeAfterSlider() {
     setIsDragging(false);
   };
 
-  const handleTouchStart = () => {
+  const handleTouchStart = (e: TouchEvent) => {
+    e.preventDefault();
     setIsDragging(true);
   };
 
   const handleTouchMove = (e: TouchEvent) => {
     if (!isDragging) return;
+    e.preventDefault();
     const touch = e.touches[0];
     handleMove(touch.clientX);
   };
@@ -83,6 +85,7 @@ export default function BeforeAfterSlider() {
 
     const handleGlobalTouchMove = (e: globalThis.TouchEvent) => {
       if (isDragging) {
+        e.preventDefault();
         const touch = e.touches[0];
         handleMove(touch.clientX);
       }
@@ -95,7 +98,7 @@ export default function BeforeAfterSlider() {
     if (isDragging) {
       document.addEventListener("mousemove", handleGlobalMouseMove);
       document.addEventListener("mouseup", handleGlobalMouseUp);
-      document.addEventListener("touchmove", handleGlobalTouchMove);
+      document.addEventListener("touchmove", handleGlobalTouchMove, { passive: false });
       document.addEventListener("touchend", handleGlobalTouchEnd);
     }
 
@@ -158,7 +161,7 @@ export default function BeforeAfterSlider() {
         {/* Slider Handle */}
         <div
           ref={sliderHandleRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 min-h-[44px] min-w-[44px] bg-white rounded-full shadow-2xl flex items-center justify-center cursor-grab active:cursor-grabbing border-4 border-maxxar-blue transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-maxxar-blue/50"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 min-h-[44px] min-w-[44px] bg-white rounded-full shadow-2xl flex items-center justify-center cursor-grab active:cursor-grabbing border-4 border-maxxar-blue transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-maxxar-blue/50 touch-none"
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
           onKeyDown={handleKeyDown}
